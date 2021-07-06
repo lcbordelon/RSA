@@ -51,12 +51,26 @@ print(FastModularExponentiation(b, k, m))
 
 #EXTENDED EUCLIDEAN ALGORITHM
 def EEA(a, b):
+    #Setting the bezout's coefficients to (0,1) and (1,0) to begin the EEA process.
     x,y, u,v = 0,1, 1,0
+    #'while a is not equal to 0' is also saying 
+    # 'continue to run this loop all the way down until a = 0 and then stop.'
     while a != 0:
-        q, r = b//a, b%a
+        #during each iteration define q as b divided by a (integer). 
+        #define k as 'b modulo a'
+        #the loop is keeping track of these as they change during each iteration
+        q, k = b//a, b%a
+        #setting m to x-u*q and setting n to y-v*q
+        #this is calculating m & n while will be used during the next iteration of the loop
         m, n = x-u*q, y-v*q
-        b,a, x,y, u,v = a,r, u,v, m,n
+        #at the end of each loop, b,a is set as a,k; x,y is set as u,v; u,v is set as m,n
+        #it does this because when the loop reaches the terminating iteration (a = 1), 
+        # x & y need to be set as the previous m&n (s1 & t1). 
+        # This sets x & y with the final Bezout's Coefficients
+        b,a, x,y, u,v = a,k, u,v, m,n
+    #After the last loop iteration, set the gcd(a,b) to b
     gcd = b
+    #Return the gcd and (x,y). (x,y) are the bezout's coefficients. For encryption, d = x.
     return gcd, x, y
 
 
