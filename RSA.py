@@ -13,6 +13,27 @@
 #return b
 
 
+def Convert_Text(_string):
+    """
+    Define this function such that it takes in a simple 
+    string such as "hello" and outputs the corresponding
+    standard list of integers (ascii) for each letter in the word hello.
+    For example:
+    _string = hello
+    integer_list = [104, 101, 108, 108, 111]
+    """
+    #will store list
+    integer_list = []
+
+    for ch in _string:
+        integer_list.append(ord(ch))
+
+    return integer_list
+
+
+print(Convert_Text("hello"))
+
+
 ## A MIX OF SRIRAM'S AND MY OWN TRY
 ##b^k mod m..
 ##Define the function, pass parameters of b, k, and m
@@ -71,7 +92,7 @@ def EEA(m, n):
         u, v = s, t
 
         #added the print statement to see what each variable is in each iteration of the loop
-        print(m, n, q, k, x, y, u, v, s, t)
+        #print(m, n, q, k, x, y, u, v, s, t)
     #After the last loop iteration, set the gcd(m,n) to n
     gcd = n
     #Return the gcd and (x,y). (x,y) are the bezout's coefficients. For encryption, d = x.
