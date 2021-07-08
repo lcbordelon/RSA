@@ -14,14 +14,11 @@
 
 
 def Convert_Text(_string):
-    """
-    Define this function such that it takes in a simple 
-    string such as "hello" and outputs the corresponding
-    standard list of integers (ascii) for each letter in the word hello.
-    For example:
-    _string = hello
-    integer_list = [104, 101, 108, 108, 111]
-    """
+
+    ##Define this function such that it takes in a simple
+    ##string such as "hello" and outputs the corresponding
+    ##standard list of integers (ascii) for each letter in the word hello.
+
     #will store list
     integer_list = []
 
@@ -31,7 +28,47 @@ def Convert_Text(_string):
     return integer_list
 
 
-print(Convert_Text("hello"))
+print(Convert_Text("lindsay"))
+
+
+def Convert_Num(_list):
+    """
+    Do the opposite of what you did in the Convert_Text
+    function defined above.
+    
+    Define this function such that it takes in a list of integers
+    and outputs the corresponding string (ascii).
+    
+    For example:
+    _list = [104, 101, 108, 108, 111]
+    _string = hello
+    """
+    _string = ''
+    for i in _list:
+        _string += chr(i)
+    return _string
+
+
+_list = [108, 105, 110, 100, 115, 97, 121]
+print(Convert_Num(_list))
+
+
+def Convert_Binary_String(_int):
+    """
+    Here, you need to define a function that converts an integer to
+    a string of its binary expansion.
+    
+    For example:
+    _int = 345
+    bits = 101011001
+    """
+    bits = bin(_int)[2:].zfill(8)
+
+    return bits
+
+
+_int = 345
+print(Convert_Binary_String(_int))
 
 
 ## A MIX OF SRIRAM'S AND MY OWN TRY
