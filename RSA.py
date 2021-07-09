@@ -19,7 +19,8 @@ def Convert_Text(_string):
     return integer_list
 
 
-print(Convert_Text("lindsay"))
+_string = "stop"
+print(Convert_Text(_string))
 
 
 def Convert_Num(_list):
@@ -209,3 +210,33 @@ def main():
 
 
 print(main())
+
+
+def Encode(n, e, message):
+    """
+    Here, the message will be a string of characters.
+    Use the function Convert_Text from 
+    the basic tool set and get a list of numbers.
+    
+    Encode each of those numbers using n and e and
+    return the encoded cipher_text.
+    """
+
+    cipher_text = []
+    print(message)
+
+    for ltr in message:
+        en = math.pow(ltr, e)
+        #print(en)
+        C = en % n
+        #print(C)
+        cipher_text.append(C)
+
+    return cipher_text
+
+
+n = 2537
+e = 13
+message = Convert_Text(_string)
+
+print(Encode(n, e, message))
