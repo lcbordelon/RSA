@@ -1,5 +1,6 @@
 import random
 import math
+import decimal
 
 max_PrimLength = 10000000
 
@@ -226,10 +227,10 @@ def Encode(n, e, message):
     print(message)
 
     for ltr in message:
-        en = math.pow(ltr, e)
-        #print(en)
+        en = (ltr**e)
+        print(en)
         C = en % n
-        #print(C)
+        print(C)
         cipher_text.append(C)
 
     return cipher_text
@@ -240,3 +241,34 @@ e = 13
 message = Convert_Text(_string)
 
 print(Encode(n, e, message))
+
+
+def Decode(n, d, cipher_text):
+    """
+    Here, the cipher_text will be a list of integers.
+    First, you will decrypt each of those integers using 
+    n and d.
+    Later, you will need to use the function Convert_Num, that converts the integers to a string, 
+    from the basic toolset to recover the original message as a string. 
+    
+    """
+    msg = []
+
+    for num in cipher_text:
+
+        M = (num**d) % n
+        msg.append(M)
+
+        print(M)
+        print(msg)
+
+    message = ''
+    return message
+
+
+n = 2537
+d = 937
+cipher_text = Encode(n, e, message)
+
+print(Decode(n, d, cipher_text))
+print(Convert_Num(message))
