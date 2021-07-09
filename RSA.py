@@ -116,44 +116,10 @@ b = 14
 
 print("Euclidean_Alg:", Euclidean_Alg(a, b))
 
+#m = 252
+#n = 356
 
-#EXTENDED EUCLIDEAN ALGORITHM
-def EEA(m, n):
-    #Setting the bezout's coefficients to (0,1) and (1,0) to begin the EEA process.
-    x, y, u, v = 0, 1, 1, 0
-    #'while m is not equal to 0' is also saying
-    # 'continue to run this loop all the way down until m = 0 and then stop.'
-    # this will also terminate the loop when n % m is 0, because m = k
-    while m != 0:
-        #during each iteration define q as n divided by m (integer).
-        #define k as 'n modulo m'
-        #the loop is keeping track of these as they change during each iteration
-        q = n // m
-        k = n % m
-        #setting s to x-u*q and setting t to y-v*q
-        #this is calculating s2 & t2 and will be used during the next iteration of the loop
-        s = x - u * q
-        t = y - v * q
-        #at the end of each loop, n,m is set as m,k; x,y is set as u,v; u,v is set as s,t
-        #it does this because when the loop reaches the terminating iteration (a = 1),
-        # x & y need to be set as the previous u&v (s1 & t1).
-        # This sets x & y with the final Bezout's Coefficients
-        n, m = m, k
-        x, y = u, v
-        u, v = s, t
-
-        #added the print statement to see what each variable is in each iteration of the loop
-        #print(m, n, q, k, x, y, u, v, s, t)
-    #After the last loop iteration, set the gcd(m,n) to n
-    gcd = n
-    #Return the gcd and (x,y). (x,y) are the bezout's coefficients. For encryption, d = x.
-    return gcd, x, y
-
-
-m = 252
-n = 356
-
-print(EEA(m, n))
+#print(EEA(m, n))
 
 #def random_prime():
 #   count = 10000000
@@ -196,10 +162,50 @@ def Find_Public_Key_e(p, q):
         e = random.randint(1, w)
         gcd = Euclidean_Alg(e, w)
 
-    return e, n
+    return e
 
 
 p = 43
 q = 59
 
 print("Public key progress:", Find_Public_Key_e(p, q))
+
+
+#EXTENDED EUCLIDEAN ALGORITHM
+def Find_Private_Key_d(m, n):
+
+    x, y, u, v = 0, 1, 1, 0
+
+    while m != 0:
+
+        q = n // m
+        k = n % m
+
+        s = x - u * q
+        t = y - v * q
+
+        n, m = m, k
+        x, y = u, v
+        u, v = s, t
+
+    gcd = n
+    #Return the gcd and (x,y). (x,y) are the bezout's coefficients. For encryption, d = x.
+    return gcd, x, y
+
+
+def main():
+    p = 43
+    q = 59
+    e = 13
+
+    n = p * q
+
+    w = (p - 1) * (q - 1)
+
+    gcd, x, y = Find_Private_Key_d(e, w)
+    d = x
+
+    return d
+
+
+print(main())
