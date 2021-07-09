@@ -72,15 +72,15 @@ print(Convert_Binary_String(_int))
 
 
 ## A MIX OF SRIRAM'S AND MY OWN TRY
-##b^k mod m..
-##Define the function, pass parameters of b, k, and m
-def FastModularExponentiation(b, k, m):
+##b^n mod m..
+##Define the function, pass parameters of b, n, and m
+def FastModularExponentiation(b, n, m):
     #initialize the result to be 1
     res = 1
     #initialize the while loop to start when k is greater than 1. k will start at the first bit position.
-    while k > 1:
+    while n > 1:
         #if the least significant bit of the number is 1, not 0, move into the below code block. If the least significant bit is 0, skip it.
-        if k & 1:
+        if n & 1:
             #update the result variable with an assignment of the current result (1) multiplied by the current b
             # (starting at least significant bit so b = 3, 3mod645 = 3.)
             #this is only updated if the bit is 1!! If the bit wasn't 1, it would stay at res = 1
@@ -91,16 +91,39 @@ def FastModularExponentiation(b, k, m):
         b = b**2 % m
         #k will now be divided by 2, setting it up for the bit operation at the beginning of the
         #next iteration of the loop
-        k >>= 1
+        n >>= 1
     #At the very end, return the final b(111) multiplied by the final res(471) modulo m (645). =36
     return (b * res) % m
 
 
 b = 2081
-k = 937
+n = 937
 m = 2537
 
-print(FastModularExponentiation(b, k, m))
+print(FastModularExponentiation(b, n, m))
+
+
+def Euclidean_Alg(a, b):
+    """
+    1. Calculate the Greatest Common Divisor of a and b.
+    
+    2. Unless b==0, the result will have the same sign as b (so that when
+    b is divided by it, the result comes out positive).
+    The function must return a single integer 'x' which is
+    the gcd of a and b.
+    """
+    while a != 0:
+        q = b // a
+        k = b % a
+        b, a = a, k
+    gcd = b
+    return gcd
+
+
+a = 77
+b = 14
+
+print("Euclidean_Alg:", Euclidean_Alg(a, b))
 
 
 #EXTENDED EUCLIDEAN ALGORITHM
