@@ -20,7 +20,7 @@ def Convert_Text(_string):
     return integer_list
 
 
-_string = "stop"
+_string = "Tell me your favorite zoo animal(s)."
 print(Convert_Text(_string))
 
 
@@ -42,8 +42,8 @@ def Convert_Num(_list):
     return _string
 
 
-_list = [108, 105, 110, 100, 115, 97, 121]
-print(Convert_Num(_list))
+_list = [84, 101, 108, 108, 32, 109, 101, 32, 121, 111, 117, 114, 32, 102, 97, 118, 111, 114, 105, 116, 101, 32, 122, 111, 111, 32, 97, 110, 105, 109, 97, 108, 40, 115, 41, 46]
+print("USE THIS:", Convert_Num(_list))
 
 
 def Convert_Binary_String(_int):
@@ -113,8 +113,8 @@ def Euclidean_Alg(a, b):
     return gcd
 
 
-a = 77
-b = 14
+a = 418543
+b = 13
 
 print("Euclidean_Alg:", Euclidean_Alg(a, b))
 
@@ -167,8 +167,8 @@ def Find_Public_Key_e(p, q):
     return e
 
 
-p = 43
-q = 59
+p = 571
+q = 733
 
 print("Public key progress:", Find_Public_Key_e(p, q))
 
@@ -196,8 +196,8 @@ def Find_Private_Key_d(m, n):
 
 
 def main():
-    p = 43
-    q = 59
+    p = 571
+    q = 733
     e = 13
 
     n = p * q
@@ -210,7 +210,7 @@ def main():
     return d
 
 
-print(main())
+print("This is d:", main())
 
 
 def Encode(n, e, message):
@@ -236,11 +236,11 @@ def Encode(n, e, message):
     return cipher_text
 
 
-n = 2537
+n = 418543
 e = 13
 message = Convert_Text(_string)
 
-print(Encode(n, e, message))
+print("SEND THIS..ENCODED MSG:", Encode(n, e, message))
 
 
 def Decode(n, d, cipher_text):
@@ -266,9 +266,12 @@ def Decode(n, d, cipher_text):
     return message
 
 
-n = 2537
-d = 937
-cipher_text = Encode(n, e, message)
+n = 418543
+d = 160477
+#cipher_text = Encode(n, e, message)
+cipher_text = [230487, 182599, 229476, 229476, 
+25439, 33798, 182599, 25439, 308894, 355570, 129591, 209063, 25439, 120553, 3904, 294194, 355570, 209063, 107955, 
+291951, 182599, 25439, 396296, 355570, 355570, 25439, 3904, 152567, 107955, 33798, 3904, 229476, 61680, 242273, 9120, 333242]
 
-print(Decode(n, d, cipher_text))
-print(Convert_Num(message))
+#print("Decoded message #'s:", Decode(n, d, cipher_text))
+#print("Converted decoded message #'s into letters:", Convert_Num(message))
