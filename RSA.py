@@ -1,16 +1,7 @@
-#def hello_world():
-#   return "Hello World"
+import random
+import math
 
-#print(hello_world)
-
-#FME ------------------------------------------------------------------------
-
-#this is for b^(2^k) mod m
-#def FastModularExponentiation(b, k, m):
-#   b %= m
-#  for _ in range(k):
-#     b = b ** 2 % m
-#return b
+max_PrimLength = 10000000
 
 
 def Convert_Text(_string):
@@ -163,3 +154,45 @@ m = 252
 n = 356
 
 print(EEA(m, n))
+
+#def random_prime():
+#   count = 10000000
+#  while True:
+#     isprime = True
+#    for x in range(2, int(math.sqrt(count) + 1)):
+#       if count % x == 0:
+#          isprime = False
+#         break
+
+#if isprime:
+#   return count
+#count += 1
+#print("Prime number:", random_prime)
+
+
+def Find_Public_Key_e(p, q):
+    """
+    Implement this function such that
+    it takes 2 primes p and q.
+    
+    Use the gcd function that you have 
+    defined before.
+    
+    The function should return 2 elements as follows:
+    public key: n
+    public key: e
+    
+    
+    HINT: this function will run a loop to find e such 
+    that e is relatively prime to (p - 1) (q - 1) 
+    and not equal to p or q.
+    """
+    w = (p - 1) * (q - 1)
+    return w
+
+
+p = 43
+q = 59
+n = 2537
+
+print("Public key progress:", Find_Public_Key_e(p, q))
