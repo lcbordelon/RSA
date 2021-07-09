@@ -187,12 +187,19 @@ def Find_Public_Key_e(p, q):
     that e is relatively prime to (p - 1) (q - 1) 
     and not equal to p or q.
     """
+    n = p * q
     w = (p - 1) * (q - 1)
-    return w
+
+    e = random.randint(1, w)
+    gcd = Euclidean_Alg(e, w)
+    while gcd != 1:
+        e = random.randint(1, w)
+        gcd = Euclidean_Alg(e, w)
+
+    return e, n
 
 
 p = 43
 q = 59
-n = 2537
 
 print("Public key progress:", Find_Public_Key_e(p, q))
