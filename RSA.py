@@ -20,7 +20,7 @@ def Convert_Text(_string):
     return integer_list
 
 
-_string = "Tell me your favorite zoo animal(s)."
+_string = "Why are humans known to be extremely afraid of computers? Probably, because they byte!"
 print(Convert_Text(_string))
 
 
@@ -42,7 +42,15 @@ def Convert_Num(_list):
     return _string
 
 
-_list = [84, 101, 108, 108, 32, 109, 101, 32, 121, 111, 117, 114, 32, 102, 97, 118, 111, 114, 105, 116, 101, 32, 122, 111, 111, 32, 97, 110, 105, 109, 97, 108, 40, 115, 41, 46]
+_list = [
+    87, 104, 121, 32, 97, 114, 101, 32, 104, 117, 109, 97, 110, 115, 32, 107,
+    110, 111, 119, 110, 32, 116, 111, 32, 98, 101, 32, 101, 120, 116, 114, 101,
+    109, 101, 108, 121, 32, 97, 102, 114, 97, 105, 100, 32, 111, 102, 32, 99,
+    111, 109, 112, 117, 116, 101, 114, 115, 63, 32, 80, 114, 111, 98, 97, 98,
+    108, 121, 44, 32, 98, 101, 99, 97, 117, 115, 101, 32, 116, 104, 101, 121,
+    32, 98, 121, 116, 101, 33
+]
+
 print("USE THIS:", Convert_Num(_list))
 
 
@@ -90,7 +98,7 @@ def FastModularExponentiation(b, n, m):
 
 
 b = 2081
-n = 937
+n = 418543
 m = 2537
 
 print(FastModularExponentiation(b, n, m))
@@ -268,10 +276,86 @@ def Decode(n, d, cipher_text):
 
 n = 418543
 d = 160477
-#cipher_text = Encode(n, e, message)
-cipher_text = [230487, 182599, 229476, 229476, 
-25439, 33798, 182599, 25439, 308894, 355570, 129591, 209063, 25439, 120553, 3904, 294194, 355570, 209063, 107955, 
-291951, 182599, 25439, 396296, 355570, 355570, 25439, 3904, 152567, 107955, 33798, 3904, 229476, 61680, 242273, 9120, 333242]
 
-#print("Decoded message #'s:", Decode(n, d, cipher_text))
+#cipher_text = Encode(n, e, message)
+cipher_text = [
+    16670, 377459, 308894, 25439, 3904, 209063, 182599, 25439, 377459, 129591,
+    33798, 3904, 152567, 242273, 25439, 17162, 152567, 355570, 51289, 152567,
+    25439, 291951, 355570, 25439, 209302, 182599, 25439, 182599, 327704,
+    291951, 209063, 182599, 33798, 182599, 229476, 308894, 25439, 3904, 120553,
+    209063, 3904, 107955, 50208, 25439, 355570, 120553, 25439, 56560, 355570,
+    33798, 82483, 129591, 291951, 182599, 209063, 242273, 317035, 25439,
+    101159, 209063, 355570, 209302, 3904, 209302, 229476, 308894, 82191, 25439,
+    209302, 182599, 56560, 3904, 129591, 242273, 182599, 25439, 291951, 377459,
+    182599, 308894, 25439, 209302, 308894, 291951, 182599, 370366
+]
+
+print("Decoded message #'s:", Decode(n, d, cipher_text))
 #print("Converted decoded message #'s into letters:", Convert_Num(message))
+
+##############################################
+#####CODE BREAKING####################
+
+# #def modinv(m, w):
+#  #   g, x, y = Find_Private_Key_d(m, w)
+#     if g != 1:
+#         raise Exception('modular inverse does not exist')
+#     else:
+#         return x % m
+
+# def factor(n):
+#     for i in range(1, n-1,2):
+#         if n%i == 0 and i%2 != 0 and i%5 !=0:
+#             print(i)
+#             return i
+
+# e = 13
+# n = 130177
+
+# p = factor(n)
+# q = n//p
+# w = (p-1) * (q-1)
+
+# # Only for python >= 3.8
+# # From https://docs.python.org/3/library/functions.html#pow
+# # If mod is present and exp is negative, base must be relatively prime to mod.
+# # In that case, pow(inv_base, -exp, mod) is returned, where inv_base is an inverse to base modulo mod.
+# # d_crack = pow(e, -1, phi_n)
+
+# # python < 3.8
+# d_crack = modinv(e, w)
+
+# print('cracked d:', d_crack) # prints "cracked d: 101"
+
+
+def factorize(n):
+    for i in range(2, n - 1):
+        if n % i == 0 and i % 2 != 0 and i % 5 != 0:
+            print(i)
+            return i
+
+
+n = 130177
+
+print("factoring n:", factorize(n))
+
+p = factorize(n)
+q = n // p
+print("this is q:", q)
+
+
+def main(p, q, e):
+
+    w = (p - 1) * (q - 1)
+
+    gcd, x, y = Find_Private_Key_d(e, w)
+    d = x
+
+    return d
+
+
+p = factorize(n)
+q = n // p
+e = 13
+
+print("This is d:", main(p, q, e))
