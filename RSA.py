@@ -20,7 +20,7 @@ def Convert_Text(_string):
     return integer_list
 
 
-_string = "Why are humans known to be extremely afraid of computers? Probably, because they byte!"
+_string = "What is your favorite zoo animal?"
 print(Convert_Text(_string))
 
 
@@ -43,14 +43,9 @@ def Convert_Num(_list):
 
 
 _list = [
-    87, 104, 121, 32, 97, 114, 101, 32, 104, 117, 109, 97, 110, 115, 32, 107,
-    110, 111, 119, 110, 32, 116, 111, 32, 98, 101, 32, 101, 120, 116, 114, 101,
-    109, 101, 108, 121, 32, 97, 102, 114, 97, 105, 100, 32, 111, 102, 32, 99,
-    111, 109, 112, 117, 116, 101, 114, 115, 63, 32, 80, 114, 111, 98, 97, 98,
-    108, 121, 44, 32, 98, 101, 99, 97, 117, 115, 101, 32, 116, 104, 101, 121,
-    32, 98, 121, 116, 101, 33
+    80, 101, 110, 103, 117, 105, 110, 115, 32, 98, 101, 99, 97, 117, 115, 101,
+    32, 111, 102, 32, 116, 104, 101, 105, 114, 32, 119, 97, 100, 100, 108, 101
 ]
-
 print("USE THIS:", Convert_Num(_list))
 
 
@@ -121,29 +116,10 @@ def Euclidean_Alg(a, b):
     return gcd
 
 
-a = 418543
-b = 13
+a = 571
+b = 733
 
 print("Euclidean_Alg:", Euclidean_Alg(a, b))
-
-#m = 252
-#n = 356
-
-#print(EEA(m, n))
-
-#def random_prime():
-#   count = 10000000
-#  while True:
-#     isprime = True
-#    for x in range(2, int(math.sqrt(count) + 1)):
-#       if count % x == 0:
-#          isprime = False
-#         break
-
-#if isprime:
-#   return count
-#count += 1
-#print("Prime number:", random_prime)
 
 
 def Find_Public_Key_e(p, q):
@@ -203,7 +179,7 @@ def Find_Private_Key_d(m, n):
     return gcd, x, y
 
 
-def main():
+def Find_d():
     p = 571
     q = 733
     e = 13
@@ -218,7 +194,7 @@ def main():
     return d
 
 
-print("This is d:", main())
+print("This is d:", Find_d())
 
 
 def Encode(n, e, message):
@@ -232,13 +208,13 @@ def Encode(n, e, message):
     """
 
     cipher_text = []
-    print(message)
+    print("This is the ASCII message to encode:", message)
 
     for ltr in message:
         en = (ltr**e)
-        print(en)
+        #print(en)
         C = en % n
-        print(C)
+        #print(C)
         cipher_text.append(C)
 
     return cipher_text
@@ -267,95 +243,85 @@ def Decode(n, d, cipher_text):
         M = (num**d) % n
         msg.append(M)
 
-        print(M)
-        print(msg)
+        #print(M)
+        #print(msg)
 
-    message = ''
-    return message
+    print(msg)
+    return msg
 
 
-n = 418543
-d = 160477
+n = 5251
+d = 3403
 
 #cipher_text = Encode(n, e, message)
-cipher_text = [
-    16670, 377459, 308894, 25439, 3904, 209063, 182599, 25439, 377459, 129591,
-    33798, 3904, 152567, 242273, 25439, 17162, 152567, 355570, 51289, 152567,
-    25439, 291951, 355570, 25439, 209302, 182599, 25439, 182599, 327704,
-    291951, 209063, 182599, 33798, 182599, 229476, 308894, 25439, 3904, 120553,
-    209063, 3904, 107955, 50208, 25439, 355570, 120553, 25439, 56560, 355570,
-    33798, 82483, 129591, 291951, 182599, 209063, 242273, 317035, 25439,
-    101159, 209063, 355570, 209302, 3904, 209302, 229476, 308894, 82191, 25439,
-    209302, 182599, 56560, 3904, 129591, 242273, 182599, 25439, 291951, 377459,
-    182599, 308894, 25439, 209302, 308894, 291951, 182599, 370366
-]
+cipher_text = [2128, 1150, 4250, 1349, 1262, 3336, 2371, 2497, 519, 1262, 1263, 1105, 3336, 1349, 1262, 2310, 1105, 3336, 4115, 762, 2405, 1263, 1105, 3336, 1262, 1349, 1150, 1105, 1262, 506, 1105, 1105, 4723, 2405, 2497, 519, 1262, 1974, 2371, 58, 1262, 519, 1105, 1349, 1262, 4839, 1150, 1105, 2497, 1262, 1974, 2371, 58, 762, 1262, 13, 4679, 1573, 1262, 4115, 2371, 2310, 1105, 1262, 2405, 3336, 1262, 4839, 2371, 762, 1560, 2405, 2497, 519, 3250]
 
-print("Decoded message #'s:", Decode(n, d, cipher_text))
-#print("Converted decoded message #'s into letters:", Convert_Num(message))
+print("Decoded message #'s:", Convert_Num(Decode(n, d, cipher_text)))
+
+#########MAIN FUNCTION#########################
+
+
+# def Main():
+#     choice_1 = input(
+#         "Enter 1 to decode a message. Enter 2 to respond to a decoded message. Enter 3 to generate your own Public & Private Keys and encoded message."
+#     )
+
+#     if choice_1 != 1:
+#         n = input("Input the n:")
+#         d = input("Input the d:")
+#         text = input("Input the cipher text")
+#         #text_split = list(map(float, text.split(",")))
+#         #text_to_use = print(int(text_split))
+#         #print(text_to_use)
+#         print(text)
+
+#         #cipher_text = text_to_use
+#         #for item in range(text_to_use):
+#         #cipher_text = cipher_text.append(int(item))
+#         cipher_text = []
+#         for i in text:
+#             cipher_text = cipher_text + i
+
+#         print(cipher_text)
+
+#         response = n, d, cipher_text
+#     else:
+#         response = "they chose something else"
+
+#     return response
+
+
+# print(Main())
 
 ##############################################
 #####CODE BREAKING####################
 
-# #def modinv(m, w):
-#  #   g, x, y = Find_Private_Key_d(m, w)
-#     if g != 1:
-#         raise Exception('modular inverse does not exist')
-#     else:
-#         return x % m
-
-# def factor(n):
-#     for i in range(1, n-1,2):
-#         if n%i == 0 and i%2 != 0 and i%5 !=0:
+# def factorize(n):
+#     for i in range(2, n - 1):
+#         if n % i == 0 and i % 2 != 0 and i % 5 != 0:
 #             print(i)
 #             return i
 
-# e = 13
-# n = 130177
+# n = 2929
 
-# p = factor(n)
-# q = n//p
-# w = (p-1) * (q-1)
+# print("this is p:", factorize(n))
 
-# # Only for python >= 3.8
-# # From https://docs.python.org/3/library/functions.html#pow
-# # If mod is present and exp is negative, base must be relatively prime to mod.
-# # In that case, pow(inv_base, -exp, mod) is returned, where inv_base is an inverse to base modulo mod.
-# # d_crack = pow(e, -1, phi_n)
+# p = factorize(n)
+# q = n // p
+# print("this is q:", q)
 
-# # python < 3.8
-# d_crack = modinv(e, w)
+# def main(p, q, e):
 
-# print('cracked d:', d_crack) # prints "cracked d: 101"
+#     w = (p - 1) * (q - 1)
 
+# #Find_Private_Key_d is the EEA.
+#     gcd, x, y = Find_Private_Key_d(e, w)
+#     d = x
 
-def factorize(n):
-    for i in range(2, n - 1):
-        if n % i == 0 and i % 2 != 0 and i % 5 != 0:
-            print(i)
-            return i
+#     return d
 
+# p = factorize(n)
+# q = n // p
+# e = 59
 
-n = 130177
-
-print("factoring n:", factorize(n))
-
-p = factorize(n)
-q = n // p
-print("this is q:", q)
-
-
-def main(p, q, e):
-
-    w = (p - 1) * (q - 1)
-
-    gcd, x, y = Find_Private_Key_d(e, w)
-    d = x
-
-    return d
-
-
-p = factorize(n)
-q = n // p
-e = 13
-
-print("This is d:", main(p, q, e))
+# print("This is d:", main(p, q, e))
