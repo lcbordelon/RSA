@@ -254,44 +254,55 @@ n = 5251
 d = 3403
 
 #cipher_text = Encode(n, e, message)
-cipher_text = [2128, 1150, 4250, 1349, 1262, 3336, 2371, 2497, 519, 1262, 1263, 1105, 3336, 1349, 1262, 2310, 1105, 3336, 4115, 762, 2405, 1263, 1105, 3336, 1262, 1349, 1150, 1105, 1262, 506, 1105, 1105, 4723, 2405, 2497, 519, 1262, 1974, 2371, 58, 1262, 519, 1105, 1349, 1262, 4839, 1150, 1105, 2497, 1262, 1974, 2371, 58, 762, 1262, 13, 4679, 1573, 1262, 4115, 2371, 2310, 1105, 1262, 2405, 3336, 1262, 4839, 2371, 762, 1560, 2405, 2497, 519, 3250]
+cipher_text = [
+    2128, 1150, 4250, 1349, 1262, 3336, 2371, 2497, 519, 1262, 1263, 1105,
+    3336, 1349, 1262, 2310, 1105, 3336, 4115, 762, 2405, 1263, 1105, 3336,
+    1262, 1349, 1150, 1105, 1262, 506, 1105, 1105, 4723, 2405, 2497, 519, 1262,
+    1974, 2371, 58, 1262, 519, 1105, 1349, 1262, 4839, 1150, 1105, 2497, 1262,
+    1974, 2371, 58, 762, 1262, 13, 4679, 1573, 1262, 4115, 2371, 2310, 1105,
+    1262, 2405, 3336, 1262, 4839, 2371, 762, 1560, 2405, 2497, 519, 3250
+]
 
 print("Decoded message #'s:", Convert_Num(Decode(n, d, cipher_text)))
 
 #########MAIN FUNCTION#########################
 
 
-# def Main():
-#     choice_1 = input(
-#         "Enter 1 to decode a message. Enter 2 to respond to a decoded message. Enter 3 to generate your own Public & Private Keys and encoded message."
-#     )
+def Main():
+    choice_1 = int(
+        input(
+            "Enter 1 to decode a message. Enter 2 to respond to a decoded message. Enter 3 to generate your own Public & Private Keys and encoded message."
+        ))
+    response = "None"
+    if choice_1 == 1:
+        n = int(input("Input the n:"))
+        d = int(input("Input the d:"))
+        text = input("Input the cipher text")
+        
+        print(text)
 
-#     if choice_1 != 1:
-#         n = input("Input the n:")
-#         d = input("Input the d:")
-#         text = input("Input the cipher text")
-#         #text_split = list(map(float, text.split(",")))
-#         #text_to_use = print(int(text_split))
-#         #print(text_to_use)
-#         print(text)
+        
+        new_text = list(text.split(", "))
+        cipher_text = []
+        for i in new_text:
+            cipher_text.append(int(float(i)))
 
-#         #cipher_text = text_to_use
-#         #for item in range(text_to_use):
-#         #cipher_text = cipher_text.append(int(item))
-#         cipher_text = []
-#         for i in text:
-#             cipher_text = cipher_text + i
+        print(cipher_text)
 
-#         print(cipher_text)
+        response = Convert_Num(Decode(n, d, cipher_text))
 
-#         response = n, d, cipher_text
-#     else:
-#         response = "they chose something else"
+    elif choice_1 == 2:
+        n = int(input("Input the n:"))
+        e = int(input("Input the e:"))
+        _string = input("Enter the message you wish to encode")
+        message = Convert_Text(_string)
+        print(type(message))
+        response = Encode(n, e, message)
 
-#     return response
+    return response
 
 
-# print(Main())
+print(Main())
 
 ##############################################
 #####CODE BREAKING####################
